@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="io.cucumber.jvm.deps" type="repository">
+    <properties maven-id="io.cucumber:cucumber-jvm-deps:1.0.6" />
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/io/cucumber/cucumber-jvm-deps/1.0.6/cucumber-jvm-deps-1.0.6.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>
