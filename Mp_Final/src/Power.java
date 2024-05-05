@@ -3,6 +3,7 @@ import java.util.Scanner;
 
 public class Power implements Serializable {
     public Character Power(Character c) {
+        //c.setPower(12);
         Scanner scanner = new Scanner(System.in);
         int i = c.getPower();
         System.out.println("Poder del personaje: " + (i));

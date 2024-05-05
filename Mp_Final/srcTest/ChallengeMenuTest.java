@@ -1,15 +1,39 @@
 import org.junit.jupiter.api.Test;
 
-import java.io.ByteArrayInputStream;
-import java.io.InputStream;
-import java.util.HashMap;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class ChallengeMenuTest {
 
+    @Test
+    //test unitario fake
+    void challengeCharacter(){
+        FakeServer fakeServer = new FakeServer();
+        ChallengeMenu challengeMenu = new ChallengeMenu();
+        Map<String, List<Challenge>> databaseP = fakeServer.obtainDatabaseP();
+
+        User defiant = new User();
+        User defied = new User();
+        defied.setName("jugador2");
+
+        Challenge challenge = new Challenge();
+        challenge.setDefiant(defiant);
+        challenge.setDefied(defied);
+        challenge.setGold(8);
+        challenge.setValid(false);
+        List<Challenge> challengeList = new ArrayList<>();
+        challengeList.add(0, challenge);
+        //String aux2 = defied.getRegisterNumber();
+        databaseP.put(defied.getName(), challengeList);
+        challengeMenu.saveChallenge(fakeServer);
+    }
+
+    private class FakeServer extends DatabaseManager{}
     @Test
     void challengeMenu() {
         ChallengeMenu challengeMenu = new ChallengeMenu();

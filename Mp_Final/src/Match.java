@@ -1,6 +1,5 @@
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Date;
 
 public class Match implements Serializable {
     private Character defiant;
@@ -11,6 +10,12 @@ public class Match implements Serializable {
     private Character winner;
     private LocalDateTime date;
 
+    public Match(){}
+
+    public Match(Character defiant, Character defied){
+        this.defiant = defiant;
+        this.defied = defied;
+    }
     public Character getDefiant() {
         return defiant;
     }

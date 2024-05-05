@@ -113,7 +113,7 @@ public class EditCharacter implements Serializable {
                     System.out.println("Puntos de vida editados.");
                 }
                 case 6 -> {
-                    c = editPower(c);
+                    int i = editPower(c,6);
                     databaseC.put(player, c);
                     databaseManager.saveDatabaseC(databaseC);
                     System.out.println("Poder editado.");
@@ -197,10 +197,11 @@ public class EditCharacter implements Serializable {
         return c;
     }
 
-    private Character editPower (Character c){
-        Power Power = new Power();
-        c = Power.Power(c);
-        return c;
+    int editPower (Character c,int i){
+        //Power Power = new Power();
+        //c = Power.Power(c);
+        c.setPower(i);
+        return i;
     }
 
     private Character editMinionMap (Character c){

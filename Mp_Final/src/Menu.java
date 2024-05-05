@@ -9,8 +9,12 @@ public class Menu implements Serializable {
     private Map<String, List<Challenge>> databaseP = new HashMap<>();
     private Map<String, Character> databaseC = new HashMap<>();
     private Map<String, User> databaseU = new HashMap<>();
+    private Map<String, Oferta> databaseV = new HashMap<>();
+    private String minionOnSale = "";
+    private User user;
 
     public void Menu(User u){
+        this.user = u;
         databaseU = databaseManager.obtainDatabaseU();
         Scanner scanner = new Scanner(System.in);
         boolean exit = false;
@@ -115,42 +119,70 @@ public class Menu implements Serializable {
                 System.out.print("--> ");
                 String option = scanner.nextLine();
                 // personaje, challenge, result
-
-                switch (option) {
-
-                    case "1" -> u = deleteAccount(u); // ok
-                    case "2" -> equipmentMenu(u, false); // ok
-                    case "3" -> challengeMenu(u); // ok
-                    case "4" -> showhistory(u); // ok
-                    case "5" -> characterMenu(u); // ok
-                    case "6" -> ranking(); //ok
-                    case "7" -> rules(); //ok
-                    case "0" -> {
-                        exit = false;
-                        login();
-
-                    }
-                    default -> System.out.println("Opción no válida, por favor intenta de nuevo.");
-
+                if(opcionValida(option)){
+                    detallesPantalla(u, option);
+                }else{
+                    System.out.println("Opción no válida, por favor intenta de nuevo.");
                 }
             }
         }
     }
 
+    public String detallesPantalla(User u, String opt){
+        switch (opt) {
+            case "1" -> deleteAccount(u); // ok
+            case "2" -> equipmentMenu(u, false); // ok
+            case "3" -> challengeMenu(u); // ok
+            case "4" -> showhistory(u); // ok
+            case "5" -> characterMenu(u); // ok
+            case "6" -> ranking(); //ok
+            case "7" -> {
+                return rules();
+            }
+            case "8" -> mostrarMinionEnVenta(u, minionOnSale);
+            case "0" -> {
+                //exit = false;
+                login();
+
+            }
+            default -> {
+                return "";
+            }
+        }
+        return "";
+    }
+    public boolean opcionValida(String opt){
+        int num = Integer.parseInt(opt);
+        if((0 <= num) && (num <= 8)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    public Minion mostrarMinionEnVenta(User user, String minionName) {
+        //databaseU = databaseManager.obtainDatabaseU();
+        List<Oferta> minions = user.getCharacter().getMinionsVenta();
+        for(Oferta oferta : minions){
+            if(oferta.getMinion().getName().equals(minionName)){
+                return oferta.getMinion();
+            }
+        }
+        return null;
+    }
 
 
-    private User deleteAccount(User cl){
+    private boolean deleteAccount(User cl){
         DeleteAccount deleteAccount = new DeleteAccount();
-        cl = deleteAccount.DeleteAccount(cl);
-        if (cl == null){
+        boolean removed = deleteAccount.DeleteAccount(cl);
+        if (removed){
             Welcome welcome = new Welcome();
             welcome.Welcome();
         }
-        return cl;
+        return removed;
     }
     private void login(){
         Login log = new Login();
-        log.Login();
+        log.Login("","");
     }
 
     private void equipmentMenu(User u, boolean a){
@@ -190,9 +222,9 @@ public class Menu implements Serializable {
 
 
 
-    private void rules(){
+    public String rules(){
         Rules rules = new Rules();
-        rules.ShowRules();
+        return rules.ShowRules();
     }
 
 

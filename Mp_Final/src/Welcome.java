@@ -36,7 +36,7 @@ public class Welcome {
     }
     private void login(){
         Login login = new Login();
-        login.Login();
+        login.Login("","");
     }
 
     private void register(){

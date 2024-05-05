@@ -70,16 +70,20 @@ public class ChallengeMenu  implements Serializable {
             challengeList = databaseP.get(aux2);
             challengeList.add(0, challenge);
             databaseP.put(aux2, challengeList);
-            databaseManager.saveDatabaseP(databaseP);
+            saveChallenge(databaseManager);
+            //databaseManager.saveDatabaseP(databaseP);
             System.out.println("Desafío correctamente enviado");
             goldBet = scanner.nextLine();
         } else{
             challengeList.add(0,challenge);
             databaseP.put(aux2, challengeList);
-            databaseManager.saveDatabaseP(databaseP);
+            //databaseManager.saveDatabaseP(databaseP);
             System.out.println("Desafío correctamente enviado");
             goldBet = scanner.nextLine();
         }
         return defiant;
+    }
+    public void saveChallenge(DatabaseManager databaseManager){
+        databaseManager.saveDatabaseP(databaseP);
     }
 }

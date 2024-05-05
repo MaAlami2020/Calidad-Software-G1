@@ -11,6 +11,7 @@ public class Character implements Serializable {
     private int power;
     private int age;
     private List<Minion> minionMap = new ArrayList<>();
+    private List<Oferta> minionsEnVenta = new ArrayList<>();
     private Ability specialAbility = new Ability();
     private  int goldValue;
     private List<Modifiers> modifierList = new ArrayList<>();
@@ -18,7 +19,7 @@ public class Character implements Serializable {
     private int typeAttack;
     private boolean fighting;
     Random rand = new Random();
-
+    public Character(){}
     public String getName() {
         return name;
     }
@@ -40,19 +41,15 @@ public class Character implements Serializable {
     }
 
     public void setType(String type) {
-
-        if (type.equalsIgnoreCase("Vampiro")){
+        if (type.equalsIgnoreCase("Vampiro"))
             this.type = TCharacter.VAMPIRE;
-            this.typeAttack = rand.nextInt(0, 11);
-        } else if (type.equalsIgnoreCase("Licántropo")) {
+        else if (type.equalsIgnoreCase("Licántropo"))
             this.type = TCharacter.WEREWOLF;
-            this.typeAttack = rand.nextInt(0, 4);
-        }else {
+        else
             this.type = TCharacter.HUNTER;
-            this.typeAttack = rand.nextInt(0, 4);
-        }
     }
 
+    
     public List<Weapon> getWeaponSet() {
         return weaponSet;
     }
@@ -79,7 +76,8 @@ public class Character implements Serializable {
     public void setMinionMap(List<Minion> minionMap) {
         this.minionMap = minionMap;
     }
-
+    public void setMinionVenta(Oferta newOffer){this.minionsEnVenta.add(newOffer);}
+    public List<Oferta> getMinionsVenta(){return this.minionsEnVenta;}
     public int gethP() {
         return hP;
     }
@@ -92,8 +90,8 @@ public class Character implements Serializable {
         return power;
     }
 
-    public void setPower(int power) {
-        this.power = power;
+    public int setPower(int power) {
+        return this.power = power;
     }
 
     public Ability getSpecialAbility() {

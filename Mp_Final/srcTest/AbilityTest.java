@@ -18,3 +18,4 @@ class AbilityTest {
         assertEquals(TAbility.GIFT,ability.getType());
     }
 }
+

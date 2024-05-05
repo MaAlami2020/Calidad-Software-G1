@@ -1,8 +1,4 @@
-import java.awt.dnd.DropTarget;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 import java.util.*;
 
 public class ShowRanking implements Serializable {
@@ -16,15 +12,19 @@ public class ShowRanking implements Serializable {
 
         List<Character> characters = new ArrayList<>(databaseR.values());
         characters = rank.Ranking(characters);
-        System.out.println("[-----------Ranking-----------]");
-        for (Character c : characters) {
-            System.out.println("Personaje: " + c.getName() + " Victorias: " + c.getWins());
-        }
+        String ranking = createRanking(characters);
+        System.out.println(ranking);
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
     }
 
-
+    public String createRanking(List<Character> characters){
+        String rankingList = "[-----------Ranking-----------]";
+        for (Character c : characters) {
+            rankingList += "Personaje: " + c.getName() + " Victorias: " + c.getWins();
+        }
+        return rankingList;
+    }
     public Map<String, Character> getDatabaseR() {
         return databaseR;
     }

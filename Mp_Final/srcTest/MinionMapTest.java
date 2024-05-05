@@ -2,13 +2,25 @@ import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.HashMap;
-import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.*;
 
 class MinionMapTest {
 
+    @Test
+    //test unitario stub
+    public void testCrearMinion(){
+        Minion mockMinion = mock(Minion.class);
+        when(mockMinion.setTipominion(TMinion.HUMAN)).thenReturn(TMinion.HUMAN);
+
+        TMinion result = mockMinion.setTipominion(TMinion.HUMAN);
+
+        verify(mockMinion).setTipominion(TMinion.HUMAN);
+
+        assertEquals(TMinion.HUMAN,result);
+
+    }
     @Test
     void minionMap() {
         Character character = new Character();

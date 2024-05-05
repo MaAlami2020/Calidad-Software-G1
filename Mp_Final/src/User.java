@@ -11,6 +11,7 @@ public class User implements Serializable {
     private  String registerNumber;
     private List<Combat> resultados = new ArrayList<>();
     private boolean banned = false;
+    private Character character;
 
     public User() {
     }
@@ -19,6 +20,9 @@ public class User implements Serializable {
     public String getName() {return name;}
 
     public void setName(String name) {this.name = name;}
+    public Character getCharacter() {return this.character;}
+
+    public void setCharacter(Character character) {this.character = character;}
 
     public String getNick() {return nick;}
 
@@ -59,5 +63,9 @@ public class User implements Serializable {
 
     public void setBanned(boolean banned) {
         this.banned = banned;
+    }
+
+    public void Login(String usernameDummy, String password) {
+
     }
 }

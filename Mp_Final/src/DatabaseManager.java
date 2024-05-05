@@ -68,10 +68,10 @@ public class DatabaseManager implements Serializable{
             fis.close();
             return u;
         } catch (Exception e) {
-            Map<String,Character> a = new HashMap<>();
-            saveDatabaseC(a);
             Map<String,List<Challenge>> m = new HashMap<>();
             saveDatabaseP(m);
+            Map<String,Character> a = new HashMap<>();
+            saveDatabaseC(a);
             Map<String,History> historyMap = new HashMap<>();
             saveDatabaseH(historyMap);
             Map<String,User> u = new HashMap<>();
@@ -79,6 +79,7 @@ public class DatabaseManager implements Serializable{
             return u;
         }
     }
+
     public Map<String,List<Challenge>> obtainDatabaseP() {
         File file = new File("Challenge.bin");
         if (!file.exists()) {

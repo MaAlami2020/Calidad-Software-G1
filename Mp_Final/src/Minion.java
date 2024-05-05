@@ -5,7 +5,12 @@ public class Minion implements Serializable {
     private String name;
     private int hitPoints;
     private TMinion tipominion;
-
+    public Minion(){}
+    public Minion(String name, int hitPoints, TMinion tipominion){
+        this.name = name;
+        this.hitPoints = hitPoints;
+        this.tipominion = tipominion;
+    }
     public String getName() {
         return name;
     }
@@ -26,7 +31,8 @@ public class Minion implements Serializable {
         return tipominion;
     }
 
-    public void setTipominion(TMinion tipominion) {
+    public TMinion setTipominion(TMinion tipominion) {
         this.tipominion = tipominion;
+        return tipominion;
     }
 }

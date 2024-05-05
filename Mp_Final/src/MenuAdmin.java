@@ -67,7 +67,7 @@ public class MenuAdmin {
     //método para ir hacia atrás en el menu admin
     private void backAdmin(){
         Login login = new Login();
-        login.Login();
+        login.Login("","");
     }
 
 
